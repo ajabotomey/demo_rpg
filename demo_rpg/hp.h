@@ -1,18 +1,24 @@
 #pragma once
-#include "HitpointTypes.h"
+#include "types.h"
 
-class hp {
+class HP {
 public: 
-	bool setMaxHP(hpType newMaxHP);
-	void takeDamage(hpType damage);
-	void heal(hpType health);
+	HP();
+	HP(HPType _currentHP);
+	HP(HPType _currentHP, HPType _maxHP);
+
+	bool setMaxHP(HPType newMaxHP);
+	void takeDamage(HPType damage);
+	void heal(HPType health);
 
 	// Accessors
-	hpType getCurrentHP();
-	hpType getMaxHP();
+	HPType GetCurrentHP();
+	HPType GetMaxHP();
 
 private:
-	hpType shieldHP;
-	hpType currentHP;
-	hpType maxHP;
+	void checkHP();
+
+	HPType shieldHP;
+	HPType currentHP;
+	HPType maxHP;
 };

@@ -8,19 +8,38 @@
 //	}
 //}
 
-bool hp::setMaxHP(hpType newMaxHP) {
+HP::HP() {
+	currentHP = 1;
+	maxHP = 1;
+	shieldHP = 0;
+}
+
+HP::HP(HPType _currentHP) {
+	currentHP = _currentHP;
+	maxHP = _currentHP;
+	shieldHP = 0;
+}
+
+HP::HP(HPType _currentHP, HPType _maxHP) {
+	currentHP = _currentHP;
+	maxHP = _maxHP;
+	shieldHP = 0;
+
+	checkHP();
+}
+
+bool HP::setMaxHP(HPType newMaxHP) {
 	if (newMaxHP < 1)
 		return false;
 
 	maxHP = newMaxHP;
 
-	if (currentHP > maxHP)
-		currentHP = maxHP;
+	checkHP();
 
 	return true;
 }
 
-void hp::takeDamage(hpType damage) {
+void HP::takeDamage(HPType damage) {
 	if (damage == 0) return;
 
 	if (shieldHP > damage) {
@@ -29,7 +48,7 @@ void hp::takeDamage(hpType damage) {
 	}
 	else {
 		// Get the leftover damage after the shield breaks
-		hpType remainingDamage = damage - shieldHP;
+		HPType remainingDamage = damage - shieldHP;
 
 		if (remainingDamage > currentHP) {
 			currentHP = 0;
@@ -47,18 +66,23 @@ void hp::takeDamage(hpType damage) {
 	currentHP -= damage;
 }
 
-void hp::heal(hpType health) {
+void HP::heal(HPType health) {
 	currentHP += health;
 
-	if (currentHP > maxHP) currentHP = maxHP;
+	checkHP();
 }
 
-hpType hp::getCurrentHP()
+HPType HP::GetCurrentHP()
 {
 	return currentHP;
 }
 
-hpType hp::getMaxHP()
+HPType HP::GetMaxHP()
 {
 	return maxHP;
+}
+
+void HP::checkHP()
+{
+	if (currentHP > maxHP) currentHP = maxHP;
 }
