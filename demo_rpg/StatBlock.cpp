@@ -21,3 +21,9 @@ StatType StatBlock::GetIntellect()
 {
 	return intellect;
 }
+
+void StatBlock::IncreaseStats(StatType s, StatType i) 
+{
+	strength += s;
+	intellect += i;
+}

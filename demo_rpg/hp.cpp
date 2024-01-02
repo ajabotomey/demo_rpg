@@ -8,19 +8,22 @@
 //	}
 //}
 
-HP::HP() {
+HP::HP() 
+{
 	currentHP = 1;
 	maxHP = 1;
 	shieldHP = 0;
 }
 
-HP::HP(HPType _currentHP) {
+HP::HP(HPType _currentHP) 
+{
 	currentHP = _currentHP;
 	maxHP = _currentHP;
 	shieldHP = 0;
 }
 
-HP::HP(HPType _currentHP, HPType _maxHP) {
+HP::HP(HPType _currentHP, HPType _maxHP) 
+{
 	currentHP = _currentHP;
 	maxHP = _maxHP;
 	shieldHP = 0;
@@ -28,7 +31,8 @@ HP::HP(HPType _currentHP, HPType _maxHP) {
 	checkHP();
 }
 
-bool HP::setMaxHP(HPType newMaxHP) {
+bool HP::setMaxHP(HPType newMaxHP) 
+{
 	if (newMaxHP < 1)
 		return false;
 
@@ -39,7 +43,8 @@ bool HP::setMaxHP(HPType newMaxHP) {
 	return true;
 }
 
-void HP::takeDamage(HPType damage) {
+void HP::takeDamage(HPType damage) 
+{
 	if (damage == 0) return;
 
 	if (shieldHP > damage) {
@@ -66,7 +71,8 @@ void HP::takeDamage(HPType damage) {
 	currentHP -= damage;
 }
 
-void HP::heal(HPType health) {
+void HP::heal(HPType health) 
+{
 	currentHP += health;
 
 	checkHP();

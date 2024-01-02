@@ -8,6 +8,10 @@ public:
 
 	StatType GetStrength();
 	StatType GetIntellect();
+
+protected:
+	void IncreaseStats(StatType s, StatType i);
+
 private:
 	StatType strength;
 	StatType intellect;
